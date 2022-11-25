@@ -1,13 +1,15 @@
 import "../styles/globals.css";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
-
-
+import Navbar from "../components/Navbar";
 
 const theme = createTheme({
   palette: {
     text: {
       primary: "#708238",
     },
+    primary:{
+      main: "#fff",
+    }
   },
   typography: {
     fontFamily: "Poppins",
@@ -20,7 +22,8 @@ const theme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline/>
+      <CssBaseline />
+      <Navbar/>
       <Component {...pageProps} />
     </ThemeProvider>
   );
