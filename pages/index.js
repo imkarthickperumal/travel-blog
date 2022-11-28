@@ -1,6 +1,7 @@
+import { Grid } from "@mui/material";
 import Image from "next/image";
+import TripCard from "../components/TripCard";
 import client from "./../config/contentful";
-
 
 export const getStaticProps = async () => {
   const response = await client.getEntries({
@@ -14,11 +15,18 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({trips}) {
+export default function Home({ trips }) {
   console.log(trips);
-  return(
-    <div>
-
-    </div>
-  )
+  return (
+    <Grid container spacing={2}>
+      {trips &&
+        trips.map((trip) => {
+          return (
+            <Grid item key={trip.sys.id}>
+              <TripCard />
+            </Grid>
+          );
+        })}
+    </Grid>
+  );
 }
