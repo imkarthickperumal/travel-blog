@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import Navbar from "../components/Navbar";
+import { Container } from '@mui/system';
 
 const theme = createTheme({
   palette: {
@@ -24,8 +25,11 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar/>
+      <Container maxWidth='lg'>
       <Component {...pageProps} />
+   </Container>
     </ThemeProvider>
+    
   );
 }
 
