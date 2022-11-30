@@ -1,5 +1,5 @@
 import React from "react";
-import client from './../../config/contentful'
+import client from "./../../config/contentful";
 
 export const getStaticPaths = async () => {
   const response = await client.getEntries({
@@ -13,6 +13,8 @@ export const getStaticPaths = async () => {
       },
     };
   });
+  console.log("Paths");
+  console.log(Paths);
   return {
     paths,
     fallback: false,
@@ -20,6 +22,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
+  console.log("Params");
+  console.log(params);
   const response = await client.getEntries({
     content_type: "trips",
     "fields.slug": params.slug,
@@ -31,8 +35,8 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const TripDetail = ({trip}) => {
-  console.log(trip)
+const TripDetail = ({ trip }) => {
+  console.log(trip);
   return <div>TripDetail Page</div>;
 };
 
