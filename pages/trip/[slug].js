@@ -1,28 +1,39 @@
-import React from 'react'
+import React from "react";
+import client from './../../config/contentful'
 
-
-export const getStaticPaths = async()=>{
+export const getStaticPaths = async () => {
   const response = await client.getEntries({
-    content_type : 'trips'
-  })
+    content_type: "trips",
+  });
   // {props : {slug:val}}
-  const paths = response.items.map((trip)=>{
-    return{
-      params : {
-        slug : trip.fields.slug
-      }
-    }
-  })
-  return{
+  const paths = response.items.map((trip) => {
+    return {
+      params: {
+        slug: trip.fields.slug,
+      },
+    };
+  });
+  return {
     paths,
-    fallback: false
-  }
-} 
+    fallback: false,
+  };
+};
 
-const TripDetail = () => {
-  return (
-    <div>TripDetail Page</div>
-  )
-}
+export const getStaticProps = async ({ params }) => {
+  const response = await client.getEntries({
+    content_type: "trips",
+    "fields.slug": params.slug,
+  });
+  return {
+    props: {
+      trip: response.items[0],
+    },
+  };
+};
 
-export default TripDetail
+const TripDetail = ({trip}) => {
+  console.log(trip)
+  return <div>TripDetail Page</div>;
+};
+
+export default TripDetail;
