@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 // import Image from "next/legacy/image";
 import Image from "next/image";
 import React from "react";
@@ -48,8 +48,16 @@ const TripDetail = ({ trip }) => {
         alt="Content Image"
         width={1200}
         height={600}
-        layout='responsive'
+        layout="responsive"
       />
+      <Stack spacing={2}>
+        <Typography varient="h4" fontWeight="bold">
+          {title}
+        </Typography>
+        <Typography varient="h6" color="#7c7f7c">
+          {brief}
+        </Typography>
+      </Stack>
     </Stack>
   );
 };
