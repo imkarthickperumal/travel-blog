@@ -58,6 +58,20 @@ const TripDetail = ({ trip }) => {
           {brief}
         </Typography>
       </Stack>
+      <Stack varient={2}>
+        <Typography varient="subtitle1">Attractions:</Typography>
+        <Stack direction="row">
+          {attractions &&
+            attractions.map((attraction, index) => {
+              return (
+                <Typography
+                  varient="subtitle1"
+                  key={index}
+                >{`${attraction},`}</Typography>
+              );
+            })}
+        </Stack>
+      </Stack>
     </Stack>
   );
 };
