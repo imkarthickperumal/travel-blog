@@ -1,3 +1,5 @@
+import { Stack } from "@mui/material";
+import Image from "next/legacy/image";
 import React from "react";
 import client from "./../../config/contentful";
 
@@ -37,7 +39,18 @@ export const getStaticProps = async ({ params }) => {
 
 const TripDetail = ({ trip }) => {
   console.log(trip);
-  return <div>TripDetail Page</div>;
+  const { title, brief, contentImage, attractions, description } = trip.fields;
+  return (
+    <Stack spacing={5}>
+      <Image
+        src={`https:${(contentImage.fields, url)}`}
+        alt="Content Image"
+        width={1200}
+        height={600}
+        layout="responsive"
+      />
+    </Stack>
+  );
 };
 
 export default TripDetail;
