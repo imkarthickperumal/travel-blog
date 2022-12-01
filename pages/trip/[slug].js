@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
-import Image from "next/legacy/image";
+// import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 import client from "./../../config/contentful";
 
@@ -43,11 +44,11 @@ const TripDetail = ({ trip }) => {
   return (
     <Stack spacing={5}>
       <Image
-        src={`https:${(contentImage.fields, url)}`}
+        src={`https:${contentImage.fields.file.url}`}
         alt="Content Image"
         width={1200}
         height={600}
-        layout="responsive"
+        layout='responsive'
       />
     </Stack>
   );
