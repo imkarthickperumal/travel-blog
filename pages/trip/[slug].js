@@ -1,8 +1,10 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 // import Image from "next/legacy/image";
 import Image from "next/image";
 import React from "react";
 import client from "./../../config/contentful";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
 
 export const getStaticPaths = async () => {
   const response = await client.getEntries({
@@ -70,6 +72,10 @@ const TripDetail = ({ trip }) => {
                 >{`${attraction},`}</Typography>
               );
             })}
+        </Stack>
+        <Stack spacing={2}>
+          <Typography varient="h5">Description:</Typography>
+          <Box>{documentToReactComponents(description)}</Box>
         </Stack>
       </Stack>
     </Stack>
