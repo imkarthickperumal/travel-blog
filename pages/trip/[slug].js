@@ -44,39 +44,31 @@ const TripDetail = ({ trip }) => {
   console.log(trip);
   const { title, brief, contentImage, attractions, description } = trip.fields;
   return (
-    <Stack spacing={5}>
+    <Stack spacing={5} mb={10}>
       <Image
         src={`https:${contentImage.fields.file.url}`}
         alt="Content Image"
         width={1200}
         height={600}
-        layout="responsive"
+        layout='responsive'
       />
       <Stack spacing={2}>
-        <Typography varient="h4" fontWeight="bold">
-          {title}
-        </Typography>
-        <Typography varient="h6" color="#7c7f7c">
-          {brief}
-        </Typography>
+        <Typography variant="h4" fontWeight='bold'>{title}</Typography>
+        <Typography variant="h6" color='#7c7f7c'>{brief}</Typography>
       </Stack>
-      <Stack varient={2}>
-        <Typography varient="subtitle1">Attractions:</Typography>
-        <Stack direction="row">
-          {attractions &&
-            attractions.map((attraction, index) => {
-              return (
-                <Typography
-                  varient="subtitle1"
-                  key={index}
-                >{`${attraction},`}</Typography>
-              );
-            })}
+      <Stack spacing={2}>
+        <Typography variant="h5" fontWeight='500' >Attractions:</Typography>
+        <Stack direction='row'>
+          {
+            attractions && attractions.map((attraction,index) => {
+              return <Typography variant="subtitle1" key={index} color='#7c7f7c'>{`${attraction},`}</Typography>
+            })
+          }
         </Stack>
-        <Stack spacing={2}>
-          <Typography varient="h5">Description:</Typography>
-          <Box>{documentToReactComponents(description)}</Box>
-        </Stack>
+      </Stack>
+      <Stack spacing={2}>
+        <Typography variant="h5" fontWeight='500'>Description:</Typography>
+        <Box>{documentToReactComponents(description)}</Box>
       </Stack>
     </Stack>
   );
