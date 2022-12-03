@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 const PageNotFound = () => {
+    
   //Automatically goes to homepage from 404 page timing
   const route = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       route.push("/");
-    }, 5000);
+    }, 000);
     clearTimeout(timer);
   }, []);
   return (
