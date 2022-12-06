@@ -20,18 +20,18 @@ export const getStaticProps = async () => {
 export default function Home({ trips }) {
   console.log(trips);
 
-  // Need to be changed
-  if (trips) {
-    const skeletonData = [1,2,3,4,5]
+  // Needs to be changed Skeleton Dashboard. it's to be delayed automatically showing skeleton UI
+  if (!trips) {
+    const skeletonData = [1, 2, 3, 4, 5];
     return (
       <Grid container spacing={5} my={5}>
         {skeletonData.map((x) => {
-            return (
-              <Grid xs={12} sm={6} lg={4} item key={x}>
-                <SkeletonCard/>
-              </Grid>
-            );
-          })}
+          return (
+            <Grid xs={12} sm={6} lg={4} item key={x}>
+              <SkeletonCard />
+            </Grid>
+          );
+        })}
       </Grid>
     );
   }
