@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Skeleton, Stack, Typography } from "@mui/material";
 // import Image from "next/legacy/image";
 import Image from "next/image";
 import React from "react";
@@ -45,7 +45,7 @@ const TripDetail = ({ trip }) => {
   const { title, brief, contentImage, attractions, description } = trip.fields;
 
   // Needs to be changed
-  if (trip) {
+  if (!trip) {
     return (
       <Stack alignItems="center" spacing={5} mb={10}>
         <Skeleton
