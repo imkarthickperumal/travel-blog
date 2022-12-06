@@ -3,8 +3,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import client from "./../../config/contentful";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export const getStaticPaths = async () => {
   const response = await client.getEntries({
@@ -37,13 +36,39 @@ export const getStaticProps = async ({ params }) => {
     props: {
       trip: response.items[0],
     },
-    revalidate: 1, 
+    revalidate: 1,
   };
 };
 
 const TripDetail = ({ trip }) => {
   console.log(trip);
   const { title, brief, contentImage, attractions, description } = trip.fields;
+
+  // Needs to be changed
+  if (trip) {
+    return (
+      <Stack alignItems="center" spacing={5} mb={10}>
+        <Skeleton
+          width="75%"
+          height="400px"
+          variant="rectangular"
+          animation="wave"
+        ></Skeleton>
+        <Stack width="75%">
+          <Typography varient="h1" width="75%">
+            <Skeleton />
+          </Typography>
+          <Typography varient="h3" width="35%">
+            <Skeleton />
+          </Typography>
+          <Typography varient="h4" width="55%">
+            <Skeleton />
+          </Typography>
+        </Stack>
+      </Stack>
+    );
+  }
+
   return (
     <Stack spacing={5} mb={10}>
       <Image
@@ -51,24 +76,37 @@ const TripDetail = ({ trip }) => {
         alt="Content Image"
         width={1200}
         height={600}
-        layout='responsive'
+        layout="responsive"
       />
       <Stack spacing={2}>
-        <Typography variant="h4" fontWeight='bold'>{title}</Typography>
-        <Typography variant="h6" color='#7c7f7c'>{brief}</Typography>
+        <Typography variant="h4" fontWeight="bold">
+          {title}
+        </Typography>
+        <Typography variant="h6" color="#7c7f7c">
+          {brief}
+        </Typography>
       </Stack>
       <Stack spacing={2}>
-        <Typography variant="h5" fontWeight='500' >Attractions:</Typography>
-        <Stack direction='row'>
-          {
-            attractions && attractions.map((attraction,index) => {
-              return <Typography variant="subtitle1" key={index} color='#7c7f7c'>{`${attraction},`}</Typography>
-            })
-          }
+        <Typography variant="h5" fontWeight="500">
+          Attractions:
+        </Typography>
+        <Stack direction="row">
+          {attractions &&
+            attractions.map((attraction, index) => {
+              return (
+                <Typography
+                  variant="subtitle1"
+                  key={index}
+                  color="#7c7f7c"
+                >{`${attraction},`}</Typography>
+              );
+            })}
         </Stack>
       </Stack>
       <Stack spacing={2}>
-        <Typography variant="h5" fontWeight='500'>Description:</Typography>
+        <Typography variant="h5" fontWeight="500">
+          Description:
+        </Typography>
         <Box>{documentToReactComponents(description)}</Box>
       </Stack>
     </Stack>
