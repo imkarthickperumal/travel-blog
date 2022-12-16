@@ -44,7 +44,7 @@ const TripDetail = ({ trip }) => {
   console.log(trip);
   const { title, brief, contentImage, attractions, description } = trip.fields;
 
-  // Needs to be changed
+  // Needs to be changed Skeleton TripUI. it's to be delayed automatically showing skeleton UI
   if (!trip) {
     return (
       <Stack alignItems="center" spacing={5} mb={10}>
